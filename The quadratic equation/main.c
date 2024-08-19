@@ -65,7 +65,7 @@ in this sequence.\n",operation_number);
         }
 
         if (coeff_a == 0 && coeff_b == 0 && coeff_c == 0)
-            printf("* Answer: x takes all values");
+            printf("* Answer: x takes all values\n");
         if (coeff_a != 0 && coeff_b == 0 && coeff_c != 0)
             printf("* Answer: x takes all values\n");
         if (coeff_a != 0 && coeff_b != 0 && coeff_c == 0)
