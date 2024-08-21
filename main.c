@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -7,22 +6,33 @@
 
 #define SS_INF_ROOTS -5
 
+#define VARIABLES 19
+
+int test_start(int nTest, float coeff_a, float coeff_b, float coeff_c, float root1expected, float root2expected, int nRootsExpected);
 float is_equal (float a, float b);
-float SolveSquare (float coeff_a, float coeff_b, float coeff_c, float *root1, float *root2, float *root);
+float SolveSquare (float coeff_a, float coeff_b, float coeff_c, float *root1, float *root2);
+void input (float *coeff_a,  float *coeff_b, float *coeff_c);
+void conclusion ( int nRoots, float root1, float root2);
+void sort (float *root1, float *root2);
+int start_verification();
 
 
 int main()
 {
+
+    start_verification();
+
     int operation_number = 1;
     char continuation_stop [3];
-    float coeff_a = 0; //the first coefficient in the equation
-    float coeff_b = 0; //the second coefficient in the equation
-    float coeff_c = 0; //the third coefficient in the equation
-    float root = 0;       //the answer is if the root is one
-    float root1 = 0;      //the answer is if there are 2 roots
-    float root2 = 0;      //the answer is if there are 2 roots
+    float coeff_a = 0;
+    float coeff_b = 0;
+    float coeff_c = 0;
+    float root1 = 0;
+    float root2 = 0;
     float discriminant = 0;
+
     Beep(440,1000);
+
     printf("(%d) Hi, this program solves a quadratic equation. Enter \"!\" to stop the program or \"go\" to continue!\n", operation_number);
     scanf("%s", continuation_stop);
     while(strlen(continuation_stop) != 1)
@@ -31,7 +41,10 @@ int main()
         ++operation_number;
         printf("(%d) Enter the coefficients of the quadratic equation \"coeff_a\", \"coeff_b\", \"coeff_c\" \
 in this sequence.\n",operation_number);
-        scanf ("%f%f%f", &coeff_a, &coeff_b, &coeff_c);
+
+        input ( &coeff_a, &coeff_b,  &coeff_c);
+
+
          ++operation_number;
         printf("(%d) Okay, your coefficients \n  coeff_a = %.2f\n  coeff_b = %.2f\n  coeff_c = %.2f.\nThat's right?\nWrite \"yes\" \
 if everything is correct, \"no\" if you want to change the coefficients.\n",operation_number, coeff_a , coeff_b, coeff_c);
@@ -51,20 +64,20 @@ if everything is correct, \"no\" if you want to change the coefficients.\n",oper
             ++operation_number;
             printf("(%d) Enter the other coefficients of the quadratic equation \"coeff_a\",\"coeff_b\",\"coeff_c\"\
 in this sequence.\n",operation_number);
-            scanf ("%f%f%f", &coeff_a, &coeff_b, &coeff_c);
+            input ( &coeff_a, &coeff_b,  &coeff_c);
         }
 
         ++operation_number;
         printf("(%d) Okay, we hope you entered everything correctly.\n",operation_number);
         ++operation_number;
         printf("(%d)Getting to the solution.\n",operation_number);
-        int nRoots =  SolveSquare (coeff_a, coeff_b, coeff_c, &root1, &root2, &root);
+        int nRoots =  SolveSquare (coeff_a, coeff_b, coeff_c, &root1, &root2 );
 
          switch (nRoots)
         {
         case 0:  printf("* No roots\n");
                  break;
-        case 1:  printf("* Answer: %f\n", root);
+        case 1:  printf("* Answer: %f\n", root1);
                  break;
         case 2:  printf("* Answer: x1 = %.2f\n          x2 = %.2f\n", root1, root2);
                  break;
@@ -92,73 +105,167 @@ in this sequence.\n",operation_number);
         return 0;
  }
 
- float SolveSquare (float coeff_a, float coeff_b, float coeff_c, float *root1, float *root2, float *root)
+ float SolveSquare (float coeff_a, float coeff_b, float coeff_c, float *root1, float *root2)
  {
-    if (!is_equal(coeff_a,0))
+    if (!is_equal(coeff_a,0)) // quadratic
     {
         float discriminant = coeff_b * coeff_b - 4 * coeff_a * coeff_c;
 
-        if(discriminant > 0 &&!is_equal(coeff_b,0) && !is_equal(coeff_c,0))
+        if(discriminant > 0)
         {
+
             *root1 = (-coeff_b + sqrtf(discriminant)) / (2 * coeff_a);
             *root2 = (-coeff_b - sqrtf(discriminant)) / (2 * coeff_a);
             return 2;
         }
 
-        if (is_equal(discriminant,0) && !is_equal(coeff_a,0) && !is_equal(coeff_b,0) && !is_equal(coeff_c,0))
+        else if(is_equal(discriminant,0))
         {
-            *root = (-coeff_b + sqrtf(discriminant)) / (2 * coeff_a);
+            *root1 = -coeff_b / (2 * coeff_a);
             return 1;
         }
 
-        if (discriminant < 0 && !is_equal(coeff_a,0) && !is_equal(coeff_b,0) && !is_equal(coeff_c,0))
+        else if (discriminant < 0)
         {
             return 0;
         }
 
-        if (!is_equal(coeff_b,0) && is_equal(coeff_c,0))
-        {
-            *root1 = 0;
-            *root2 = (-coeff_b) / coeff_a;
-            return 2;
-        }
-
-        if (is_equal(coeff_b,0) && coeff_c > 0)
-        {
-            return 0;
-        }
-
-        if (is_equal(coeff_b,0) && coeff_c < 0)
-        {
-            *root1 = -sqrt(-coeff_c/coeff_a);
-            *root2 =  sqrt(-coeff_c/coeff_a);
-            return 2;
-        }
     }
 
-    else
+    else // linear
     {
 
-        if(!is_equal(coeff_b,0) && !is_equal(coeff_c,0))
+        if(is_equal(coeff_b,0))
         {
-            *root = -coeff_c / coeff_b;
+            if(is_equal(coeff_c,0))
+            {
+                return -5;
+            }
+            else if (!is_equal(coeff_c,0))
+            {
+                return 0;
+            }
+
+        else
+        {
+            *root1 = - coeff_c / coeff_b;
             return 1;
         }
 
-        if(is_equal(coeff_b,0) && !is_equal(coeff_c,0))
-        {
-            return 0;
-        }
-
-        if(!is_equal(coeff_b,0) && is_equal(coeff_c,0))
-        {
-            *root = 0;
-            return 1;
-        }
-
-        if(is_equal(coeff_b,0) && is_equal(coeff_c,0))
-        {
-            return -5;
-        }
+      }
     }
+
  }
+
+
+int test_start(int nTest, float coeff_a, float coeff_b, float coeff_c, float root1expected, float root2expected,  int nRootsExpected)
+{
+    float root1 = 0;
+    float root2 = 0;
+    float root = 0;
+
+    int nRoots =  SolveSquare(coeff_a, coeff_b, coeff_c, &root1, &root2);
+    sort (&root1, &root2);
+    if(nRoots != nRootsExpected || !is_equal(root1,root1expected) || !is_equal(root2,root2expected))
+    {
+        printf("Error: %d, coeff_a = %f, coeff_b = %f, coeff_c = %f, root1 = %f, root2 = %f, nRoots = %d\n"
+               "Expected nRoots: root1 = %f, root2 = %f, nRoots = %d\n",
+               nTest, coeff_a, coeff_b, coeff_c, root1, root2, nRoots,
+               root1expected, root2expected, nRootsExpected);
+               return 1;
+    }
+    return 0;
+}
+
+void  input (float *coeff_a,  float *coeff_b, float *coeff_c)
+ {
+    scanf ("%f%f%f", coeff_a, coeff_b, coeff_c);
+ }
+
+ void conclusion ( int nRoots, float root1, float root2)
+ {
+    switch (nRoots)
+        {
+        case 0:  printf("* No roots\n");
+                 break;
+        case 1:  printf("* Answer: %f\n", root1);
+                 break;
+        case 2:  printf("* Answer: x1 = %.2f\n          x2 = %.2f\n", root1, root2);
+                 break;
+        case SS_INF_ROOTS:  printf("* Any number\n");
+                            break;
+        default: printf("main(): ERROR: nRoots = %d\n", nRoots);
+        }
+}
+
+void sort (float *root1, float *root2)
+{
+    float helper = 0;
+    if (*root1 > *root2)
+    {
+      helper = *root1;
+      *root1 = *root2;
+      *root2 = helper;
+    }
+}
+
+int start_verification()
+{
+    int sum = 0;
+
+    float start[VARIABLES] =
+    {
+        (test_start(1,  1,      5,    6,    -3,                    -2,                          2)),
+        (test_start(2,  1,      4,    4,    -2,                     0,                          1)),
+        (test_start(3,  1,      4,    8,     0,                     0,                          0)),
+        (test_start(4,  5,      5,    0,    -1,                     0,                          2)),
+        (test_start(5,  5,      0,    8,     0,                     0,                          0)),
+        (test_start(6,  5,      0,   -5,    -1,                     1,                          2)),
+        (test_start(7,  0,      5,    5,    -1,                     0,                          1)),
+        (test_start(8,  0,      0,    5,     0,                     0,                          0)),
+        (test_start(9,  0,      5,    0,     0,                     0,                          1)),
+        (test_start(10, 0,      0,    0,     0,                     0,                         -5)),
+        (test_start(11, 2.3,    2.1, -32,   -4.21437,            3.30133,                       2)),
+        (test_start(12, 1,      2.2,  1.21, -1.1,                   0,                          1)),
+        (test_start(13, 1.1,    4.4,  8.8,   0,                     0,                          0)),
+        (test_start(14, 5.8,    5.5,  0,    -0.948276,              0,                          2)),
+        (test_start(15, 6.7,    0,    7.9,   0,                     0,                          0)),
+        (test_start(16, 4.5,    0,   -9.3,  -1.43759,            1.43759,                       2)),
+        (test_start(17, 0,      5.3,  6.6,  -1.2452830188679,       0,                          1)),
+        (test_start(18, 0,      0,    7.798, 0,                     0,                          0)),
+        (test_start(19, 0,6.78, 0,    0,     0,                                                 1))
+    };
+    int variables;
+    for(variables = 0; variables < VARIABLES; variables++)
+        sum += start[variables];
+    printf ("the number of errors: %d\n", sum);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
