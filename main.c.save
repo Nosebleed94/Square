@@ -8,19 +8,22 @@
 
 #define VARIABLES 19
 
+int start_verification();
 int test_start(int nTest, float coeff_a, float coeff_b, float coeff_c, float root1expected, float root2expected, int nRootsExpected);
+
 float is_equal (float a, float b);
+float Comparison_more(float a, float b);
 float SolveSquare (float coeff_a, float coeff_b, float coeff_c, float *root1, float *root2);
+float Comparison_less(float a, float b);
+
 void input (float *coeff_a,  float *coeff_b, float *coeff_c);
 void conclusion ( int nRoots, float root1, float root2);
 void sort (float *root1, float *root2);
-int start_verification();
+
 
 
 int main()
 {
-
-    start_verification();
 
     int operation_number = 1;
     char continuation_stop [3];
@@ -32,6 +35,8 @@ int main()
     float discriminant = 0;
 
     Beep(440,1000);
+
+    start_verification();
 
     printf("(%d) Hi, this program solves a quadratic equation. Enter \"!\" to stop the program or \"go\" to continue!\n", operation_number);
     scanf("%s", continuation_stop);
@@ -98,7 +103,7 @@ in this sequence.\n",operation_number);
 
  float is_equal (float a, float b)
  {
-    float e = 0.000001;
+    float e = 0.00001;  ///////////////////////////////!
     if (fabs(a-b) < e)
         return 1;
     else
@@ -111,8 +116,9 @@ in this sequence.\n",operation_number);
     {
         float discriminant = coeff_b * coeff_b - 4 * coeff_a * coeff_c;
 
-        if(discriminant > 0)
+        if(Comparison_more(discriminant,0))
         {
+
 
             *root1 = (-coeff_b + sqrtf(discriminant)) / (2 * coeff_a);
             *root2 = (-coeff_b - sqrtf(discriminant)) / (2 * coeff_a);
@@ -125,7 +131,7 @@ in this sequence.\n",operation_number);
             return 1;
         }
 
-        else if (discriminant < 0)
+        else if (Comparison_less(discriminant,0))
         {
             return 0;
         }
@@ -137,14 +143,17 @@ in this sequence.\n",operation_number);
 
         if(is_equal(coeff_b,0))
         {
+
             if(is_equal(coeff_c,0))
             {
                 return -5;
             }
+
             else if (!is_equal(coeff_c,0))
             {
                 return 0;
             }
+        }
 
         else
         {
@@ -152,14 +161,12 @@ in this sequence.\n",operation_number);
             return 1;
         }
 
-      }
     }
-
  }
 
 
-int test_start(int nTest, float coeff_a, float coeff_b, float coeff_c, float root1expected, float root2expected,  int nRootsExpected)
-{
+ int test_start(int nTest, float coeff_a, float coeff_b, float coeff_c, float root1expected, float root2expected,  int nRootsExpected)
+ {
     float root1 = 0;
     float root2 = 0;
     float root = 0;
@@ -177,7 +184,7 @@ int test_start(int nTest, float coeff_a, float coeff_b, float coeff_c, float roo
     return 0;
 }
 
-void  input (float *coeff_a,  float *coeff_b, float *coeff_c)
+ void  input (float *coeff_a,  float *coeff_b, float *coeff_c)
  {
     scanf ("%f%f%f", coeff_a, coeff_b, coeff_c);
  }
@@ -213,33 +220,60 @@ int start_verification()
 {
     int sum = 0;
 
-    float start[VARIABLES] =
+    int start[VARIABLES] =
     {
-        (test_start(1,  1,      5,    6,    -3,       -2,                           2)),
-        (test_start(2,  1,      4,    4,    -2,        0,                          1)),
-        (test_start(3,  1,      4,    8,     0,        0,                          0)),
-        (test_start(4,  5,      5,    0,    -1,        0,                          2)),
-        (test_start(5,  5,      0,    8,     0,        0,                          0)),
-        (test_start(6,  5,      0,   -5,    -1,        1,                          2)),
-        (test_start(7,  0,      5,    5,    -1,                    0,                          1)),
-        (test_start(8,  0,      0,    5,     0,        0,                          0)),
-        (test_start(9,  0,      5,    0,     0,                     0,                          1)),
-        (test_start(10, 0,      0,    0,     0,                     0,                         -5)),
-        (test_start(11, 2.3,    2.1, -32,   -4.21437,            3.30133,                    2)),
-        (test_start(12, 1,      2.2,  1.21, -1.1,                   0,                          1)),
-        (test_start(13, 1.1,    4.4,  8.8,   0,                     0,                          0)),
-        (test_start(14, 5.8,    5.5,  0,    -0.948276,              0,                          2)),
-        (test_start(15, 6.7,    0,    7.9,   0,                     0,                          0)),
-        (test_start(16, 4.5,    0,   -9.3,  -1.43759,            1.43759,             2)),
-        (test_start(17, 0,      5.3,  6.6,  -1.2452830188679,       0,                          1)),
-        (test_start(18, 0,      0,    7.798, 0,                     0,                                  0)),
-        (test_start(19, 0,6.78, 0,    0,     0,                                    1))
+        (test_start(1,  1,      5,    6,    -3,              -2,       2)),
+        (test_start(2,  1,      4,    4,    -2,               0,       1)),
+        (test_start(3,  1,      4,    8,     0,               0,       0)),
+        (test_start(4,  5,      5,    0,    -1,               0,       2)),
+        (test_start(5,  5,      0,    8,     0,               0,       0)),
+        (test_start(6,  5,      0,   -5,    -1,               1,       2)),
+        (test_start(7,  0,      5,    5,    -1,               0,       1)),
+        (test_start(8,  0,      0,    5,     0,               0,       0)),
+        (test_start(9,  0,      5,    0,     0,               0,       1)),
+        (test_start(10, 0,      0,    0,     0,               0,      -5)),
+        (test_start(11, 2.3,    2.1, -32,   -4.21437,         3.30133, 2)),
+        (test_start(12, 1,      2.2,  1.21, -1.1,             0,       1)),
+        (test_start(13, 1.1,    4.4,  8.8,   0,               0,       0)),
+        (test_start(14, 5.8,    5.5,  0,    -0.948276,        0,       2)),
+        (test_start(15, 6.7,    0,    7.9,   0,               0,       0)),
+        (test_start(16, 4.5,    0,   -9.3,  -1.43759,         1.43759, 2)),
+        (test_start(17, 0,      5.3,  6.6,  -1.2452830188679, 0,       1)),
+        (test_start(18, 0,      0,    7.798, 0,               0,       0)),
+        (test_start(19, 0,      6.78, 0,     0,               0,       1))
     };
+
     int variables;
     for(variables = 0; variables < VARIABLES; variables++)
         sum += start[variables];
     printf ("the number of errors: %d\n", sum);
+    return 0;
 }
+
+float Comparison_more(float a, float b)
+{
+    float e = 0.00001;
+    if((a - b) > e)
+        return 1;
+    else
+        return 0;
+}
+
+
+float Comparison_less(float a, float b)
+{
+    float e = 0.00001;
+    if((a-b) < -e)
+        return 1;
+    else
+        return 0;
+}
+
+ struct 
+ {
+  int nTest, nRootsExpected;
+  float coeff_a, floatcoeff_b, float coeff_c, float root1expected, float root2expected,  
+
 
 
 
