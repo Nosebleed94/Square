@@ -8,8 +8,17 @@
 
 #define VARIABLES 19
 
+typedef struct testing
+{
+    int nTest;
+    float coeff_a, coeff_b, coeff_c;
+    float root1Exprected, root2Expected;
+    int nRootsExpected;
+} testing;
+
+
 int start_verification();
-int test_start(int nTest, float coeff_a, float coeff_b, float coeff_c, float root1expected, float root2expected, int nRootsExpected);
+int test_start(testing data);
 
 float is_equal (float a, float b);
 float Comparison_more(float a, float b);
@@ -24,7 +33,6 @@ void sort (float *root1, float *root2);
 
 int main()
 {
-
     int operation_number = 1;
     char continuation_stop [3];
     float coeff_a = 0;
@@ -165,24 +173,7 @@ in this sequence.\n",operation_number);
  }
 
 
- int test_start(int nTest, float coeff_a, float coeff_b, float coeff_c, float root1expected, float root2expected,  int nRootsExpected)
- {
-    float root1 = 0;
-    float root2 = 0;
-    float root = 0;
 
-    int nRoots =  SolveSquare(coeff_a, coeff_b, coeff_c, &root1, &root2);
-    sort (&root1, &root2);
-    if(nRoots != nRootsExpected || !is_equal(root1,root1expected) || !is_equal(root2,root2expected))
-    {
-        printf("Error: %d, coeff_a = %f, coeff_b = %f, coeff_c = %f, root1 = %f, root2 = %f, nRoots = %d\n"
-               "Expected nRoots: root1 = %f, root2 = %f, nRoots = %d\n",
-               nTest, coeff_a, coeff_b, coeff_c, root1, root2, nRoots,
-               root1expected, root2expected, nRootsExpected);
-               return 1;
-    }
-    return 0;
-}
 
  void  input (float *coeff_a,  float *coeff_b, float *coeff_c)
  {
@@ -218,29 +209,48 @@ void sort (float *root1, float *root2)
 
 int start_verification()
 {
+                        testing test1 =  {1,  1,      5,    6,    -3,              -2,       2};
+                        testing test2 =  {2,  1,      4,    4,    -2,               0,       1};
+                        testing test3 =  {3,  1,      4,    8,     0,               0,       0};
+                        testing test4 =  {4,  5,      5,    0,    -1,               0,       2};
+                        testing test5 =  {5,  5,      0,    8,     0,               0,       0};
+                        testing test6 =  {6,  5,      0,   -5,    -1,               1,       2};
+                        testing test7 =  {7,  0,      5,    5,    -1,               0,       1};
+                        testing test8 =  {8,  0,      0,    5,     0,               0,       0};
+                        testing test9 =  {9,  0,      5,    0,     0,               0,       1};
+                        testing test10 = {10, 0,      0,    0,     0,               0,      -5};
+                        testing test11 = {11, 2.3,    2.1, -32,   -4.21437,         3.30133, 2};
+                        testing test12 = {12, 1,      2.2,  1.21, -1.1,             0,       1};
+                        testing test13 = {13, 1.1,    4.4,  8.8,   0,               0,       0};
+                        testing test14 = {14, 5.8,    5.5,  0,    -0.948276,        0,       2};
+                        testing test15 = {15, 6.7,    0,    7.9,   0,               0,       0};
+                        testing test16 = {16, 4.5,    0,   -9.3,  -1.43759,         1.43759, 2};
+                        testing test17 = {17, 0,      5.3,  6.6,  -1.2452830188679, 0,       1};
+                        testing test18 = {18, 0,      0,    7.798, 0,               0,       0};
+                        testing test19 = {19, 0,      6.78, 0,     0,               0,       1};
     int sum = 0;
 
     int start[VARIABLES] =
     {
-        (test_start(1,  1,      5,    6,    -3,              -2,       2)),
-        (test_start(2,  1,      4,    4,    -2,               0,       1)),
-        (test_start(3,  1,      4,    8,     0,               0,       0)),
-        (test_start(4,  5,      5,    0,    -1,               0,       2)),
-        (test_start(5,  5,      0,    8,     0,               0,       0)),
-        (test_start(6,  5,      0,   -5,    -1,               1,       2)),
-        (test_start(7,  0,      5,    5,    -1,               0,       1)),
-        (test_start(8,  0,      0,    5,     0,               0,       0)),
-        (test_start(9,  0,      5,    0,     0,               0,       1)),
-        (test_start(10, 0,      0,    0,     0,               0,      -5)),
-        (test_start(11, 2.3,    2.1, -32,   -4.21437,         3.30133, 2)),
-        (test_start(12, 1,      2.2,  1.21, -1.1,             0,       1)),
-        (test_start(13, 1.1,    4.4,  8.8,   0,               0,       0)),
-        (test_start(14, 5.8,    5.5,  0,    -0.948276,        0,       2)),
-        (test_start(15, 6.7,    0,    7.9,   0,               0,       0)),
-        (test_start(16, 4.5,    0,   -9.3,  -1.43759,         1.43759, 2)),
-        (test_start(17, 0,      5.3,  6.6,  -1.2452830188679, 0,       1)),
-        (test_start(18, 0,      0,    7.798, 0,               0,       0)),
-        (test_start(19, 0,      6.78, 0,     0,               0,       1))
+     (test_start(test1)),
+     (test_start(test2)),
+     (test_start(test3)),
+     (test_start(test4)),
+     (test_start(test5)),
+     (test_start(test6)),
+     (test_start(test7)),
+     (test_start(test8)),
+     (test_start(test9)),
+     (test_start(test10)),
+     (test_start(test11)),
+     (test_start(test12)),
+     (test_start(test13)),
+     (test_start(test14)),
+     (test_start(test15)),
+     (test_start(test16)),
+     (test_start(test17)),
+     (test_start(test18)),
+     (test_start(test19)),
     };
 
     int variables;
@@ -248,6 +258,7 @@ int start_verification()
         sum += start[variables];
     printf ("the number of errors: %d\n", sum);
     return 0;
+
 }
 
 float Comparison_more(float a, float b)
@@ -269,10 +280,26 @@ float Comparison_less(float a, float b)
         return 0;
 }
 
- struct 
+
+
+int test_start(testing data)
  {
-  int nTest, nRootsExpected;
-  float coeff_a, floatcoeff_b, float coeff_c, float root1expected, float root2expected,  
+    float root1 = 0;
+    float root2 = 0;
+
+    int nRoots =  SolveSquare(data.coeff_a, data.coeff_b, data.coeff_c, &root1, &root2);
+    sort (&root1, &root2);
+    if(nRoots != data.nRootsExpected || !is_equal(data.root1,data.root1expected) || !is_equal(data.root2,data.root2expected))
+    {
+        printf("Error: %d, coeff_a = %f, coeff_b = %f, coeff_c = %f, root1 = %f, root2 = %f, nRoots = %d\n"
+               "Expected nRoots: root1 = %f, root2 = %f, nRoots = %d\n",
+                data.nTest, data.coeff_a, data.coeff_b, data.coeff_c, data.root1, data.root2, data.nRoots,
+               data.root1expected, data.root2expected, data.nRootsExpected);
+               return 1;
+    }
+    return 0;
+}
+
 
 
 
