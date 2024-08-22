@@ -1,7 +1,15 @@
 # depslib dependency file v1.0
-1724038349 source:c:\users\admin\desktop\задачи прата\квадратное уравнение\the quadratic equation\main.c
+1724341352 source:c:\users\admin\desktop\задачи прата\квадратное уравнение\the quadratic equation\main.c
 	<stdio.h>
 	<stdlib.h>
 	<math.h>
 	<string.h>
+	<windows.h>
+	"solve.h"
+
+1724340944 source:c:\users\admin\desktop\задачи прата\квадратное уравнение\the quadratic equation\solve.c
+
+1724340944 c:\users\admin\desktop\задачи прата\квадратное уравнение\the quadratic equation\solve.c
+
+1724340944 c:\users\admin\desktop\задачи прата\квадратное уравнение\the quadratic equation\solve.h
 
