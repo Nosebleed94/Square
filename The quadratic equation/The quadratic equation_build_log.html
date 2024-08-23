@@ -4,13 +4,102 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
 <body>
 <tt>
-Build started on: <u>22-08-2024 at 18:44.45</u><br />
-Build ended on: <u>22-08-2024 at 18:44.45</u><p />
+Build started on: <u>23-08-2024 at 06:53.01</u><br />
+Build ended on: <u>23-08-2024 at 06:53.02</u><p />
 <b>-------------- Build: Debug in The quadratic equation (compiler: NOT FOR PROJECTS! = MinGW GCC + Strict + Fast + Save (Requires Git))---------------</b><br />
+gcc.exe -Wall -g -Wshadow -Winit-self -Wredundant-decls -Wcast-align -Wundef -Wfloat-equal -Winline -Wunreachable-code -Wmissing-declarations -Wmissing-include-dirs -Wswitch-enum -Wswitch-default -Wmain -Wextra -Wall -g -pipe -fexceptions -Wcast-qual -Wconversion -Wempty-body -Wformat-security -Wformat=2 -Wignored-qualifiers -Wlogical-op -Wmissing-field-initializers -Wpointer-arith -Wstack-usage=8192 -Wstrict-aliasing -Wtype-limits -Wwrite-strings -D_DEBUG -D_EJUDGE_CLIENT_SIDE -D_EJC  -c "C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\main.c" -o obj\Debug\main.o<br />
+In file included from C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\main.c:7:0:<br />
+C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\solve.h: In function 'SolveSquare':<br />
+<font color="#0000ff">C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\solve.h:20:9: warning: comparing floating point with == or != is unsafe [-Wfloat-equal]</font><br />
+     if (!is_equal(coeff_a,0)) // quadratic<br />
+         ^<br />
+<font color="#0000ff">C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\solve.h:24:12: warning: comparing floating point with == or != is unsafe [-Wfloat-equal]</font><br />
+         if(Comparison_more(discriminant,0))<br />
+            ^<br />
+<font color="#0000ff">C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\solve.h:33:17: warning: comparing floating point with == or != is unsafe [-Wfloat-equal]</font><br />
+         else if(is_equal(discriminant,0))<br />
+                 ^<br />
+<font color="#0000ff">C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\solve.h:39:18: warning: comparing floating point with == or != is unsafe [-Wfloat-equal]</font><br />
+         else if (Comparison_less(discriminant,0))<br />
+                  ^<br />
+<font color="#0000ff">C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\solve.h:49:12: warning: comparing floating point with == or != is unsafe [-Wfloat-equal]</font><br />
+         if(is_equal(coeff_b,0))<br />
+            ^<br />
+<font color="#0000ff">C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\solve.h:52:16: warning: comparing floating point with == or != is unsafe [-Wfloat-equal]</font><br />
+             if(is_equal(coeff_c,0))<br />
+                ^<br />
+<font color="#0000ff">C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\solve.h:58:22: warning: comparing floating point with == or != is unsafe [-Wfloat-equal]</font><br />
+             else if (!is_equal(coeff_c,0))<br />
+                      ^<br />
+C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\solve.h: In function 'Comparison_more':<br />
+<font color="#0000ff">C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\solve.h:86:5: warning: conversion to 'float' alters 'double' constant value [-Wconversion]</font><br />
+     float e = 0.00001;<br />
+     ^<br />
+C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\solve.h: In function 'Comparison_less':<br />
+<font color="#0000ff">C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\solve.h:96:5: warning: conversion to 'float' alters 'double' constant value [-Wconversion]</font><br />
+     float e = 0.00001;<br />
+     ^<br />
+C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\main.c: In function 'start_verification':<br />
+<font color="#0000ff">C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\main.c:122:5: warning: conversion to 'float' alters 'double' constant value [-Wconversion]</font><br />
+     testing test11 = {11, 2.3,    2.1, -32,   -4.21437,         3.30133, 2};<br />
+     ^<br />
+<font color="#0000ff">C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\main.c:122:5: warning: conversion to 'float' alters 'double' constant value [-Wconversion]</font><br />
+<font color="#0000ff">C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\main.c:122:5: warning: conversion to 'float' alters 'double' constant value [-Wconversion]</font><br />
+<font color="#0000ff">C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\main.c:122:5: warning: conversion to 'float' alters 'double' constant value [-Wconversion]</font><br />
+<font color="#0000ff">C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\main.c:123:5: warning: conversion to 'float' alters 'double' constant value [-Wconversion]</font><br />
+     testing test12 = {12, 1,      2.2,  1.21, -1.1,             0,       1};<br />
+     ^<br />
+<font color="#0000ff">C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\main.c:123:5: warning: conversion to 'float' alters 'double' constant value [-Wconversion]</font><br />
+<font color="#0000ff">C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\main.c:123:5: warning: conversion to 'float' alters 'double' constant value [-Wconversion]</font><br />
+<font color="#0000ff">C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\main.c:124:5: warning: conversion to 'float' alters 'double' constant value [-Wconversion]</font><br />
+     testing test13 = {13, 1.1,    4.4,  8.8,   0,               0,       0};<br />
+     ^<br />
+<font color="#0000ff">C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\main.c:124:5: warning: conversion to 'float' alters 'double' constant value [-Wconversion]</font><br />
+<font color="#0000ff">C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\main.c:124:5: warning: conversion to 'float' alters 'double' constant value [-Wconversion]</font><br />
+<font color="#0000ff">C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\main.c:125:5: warning: conversion to 'float' alters 'double' constant value [-Wconversion]</font><br />
+     testing test14 = {14, 5.8,    5.5,  0,    -0.948276,        0,       2};<br />
+     ^<br />
+<font color="#0000ff">C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\main.c:125:5: warning: conversion to 'float' alters 'double' constant value [-Wconversion]</font><br />
+<font color="#0000ff">C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\main.c:126:5: warning: conversion to 'float' alters 'double' constant value [-Wconversion]</font><br />
+     testing test15 = {15, 6.7,    0,    7.9,   0,               0,       0};<br />
+     ^<br />
+<font color="#0000ff">C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\main.c:126:5: warning: conversion to 'float' alters 'double' constant value [-Wconversion]</font><br />
+<font color="#0000ff">C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\main.c:127:5: warning: conversion to 'float' alters 'double' constant value [-Wconversion]</font><br />
+     testing test16 = {16, 4.5,    0,   -9.3,  -1.43759,         1.43759, 2};<br />
+     ^<br />
+<font color="#0000ff">C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\main.c:127:5: warning: conversion to 'float' alters 'double' constant value [-Wconversion]</font><br />
+<font color="#0000ff">C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\main.c:127:5: warning: conversion to 'float' alters 'double' constant value [-Wconversion]</font><br />
+<font color="#0000ff">C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\main.c:128:5: warning: conversion to 'float' alters 'double' constant value [-Wconversion]</font><br />
+     testing test17 = {17, 0,      5.3,  6.6,  -1.2452830188679, 0,       1};<br />
+     ^<br />
+<font color="#0000ff">C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\main.c:128:5: warning: conversion to 'float' alters 'double' constant value [-Wconversion]</font><br />
+<font color="#0000ff">C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\main.c:128:5: warning: conversion to 'float' alters 'double' constant value [-Wconversion]</font><br />
+<font color="#0000ff">C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\main.c:129:5: warning: conversion to 'float' alters 'double' constant value [-Wconversion]</font><br />
+     testing test18 = {18, 0,      0,    7.798, 0,               0,       0};<br />
+     ^<br />
+<font color="#0000ff">C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\main.c:130:5: warning: conversion to 'float' alters 'double' constant value [-Wconversion]</font><br />
+     testing test19 = {19, 0,      6.78, 0,     0,               0,       1};<br />
+     ^<br />
+C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\main.c: In function 'test_start':<br />
+<font color="#0000ff">C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\main.c:174:41: warning: comparing floating point with == or != is unsafe [-Wfloat-equal]</font><br />
+     if(nRoots != data.nRootsExpected || !is_equal(root1,data.root1expected) || !is_equal(root2,data.root2expected))<br />
+                                         ^<br />
+<font color="#0000ff">C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\main.c:174:80: warning: comparing floating point with == or != is unsafe [-Wfloat-equal]</font><br />
+     if(nRoots != data.nRootsExpected || !is_equal(root1,data.root1expected) || !is_equal(root2,data.root2expected))<br />
+                                                                                ^<br />
+C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\main.c: In function 'filing_main':<br />
+<font color="#0000ff">C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\main.c:187:11: warning: unused variable 'continuation_stop' [-Wunused-variable]</font><br />
+      char continuation_stop [3];<br />
+           ^<br />
+In file included from C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\main.c:7:0:<br />
+C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\solve.h: In function 'SolveSquare':<br />
+<font color="#0000ff">C:\Users\Admin\Desktop\Задачи Прата\квадратное уравнение\The quadratic equation\solve.h:71:2: warning: control reaches end of non-void function [-Wreturn-type]</font><br />
+  }<br />
+  ^<br />
 g++.exe  -o "bin\Debug\The quadratic equation.exe" obj\Debug\main.o<br />
 Output file is bin\Debug\The quadratic equation.exe with size 187,93 KB<br />
 <font color="#0000ff">Process terminated with status 0 (0 minute(s), 0 second(s))</font><br />
-<font color="#0000ff">0 error(s), 0 warning(s) (0 minute(s), 0 second(s))</font><br />
+<font color="#0000ff">0 error(s), 35 warning(s) (0 minute(s), 0 second(s))</font><br />
 </tt>
 </body>
 </html>

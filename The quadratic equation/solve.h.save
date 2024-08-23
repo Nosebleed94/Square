@@ -16,7 +16,6 @@ enum number_roots
 
 enum number_roots SolveSquare (float coeff_a, float coeff_b, float coeff_c, float *root1, float *root2)
  {
-
     if (!is_equal(coeff_a,0)) // quadratic
     {
         float discriminant = coeff_b * coeff_b - 4 * coeff_a * coeff_c;
@@ -51,7 +50,7 @@ enum number_roots SolveSquare (float coeff_a, float coeff_b, float coeff_c, floa
 
             if(is_equal(coeff_c,0))
             {
-                printf("nRoots: %d\n", -5);
+                printf("nRoots: %d\n", -);
                 return INFINITYY;
             }
 

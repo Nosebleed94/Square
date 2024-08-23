@@ -28,7 +28,7 @@ int test_start(testing data);
 void input (float *coeff_a,  float *coeff_b, float *coeff_c);
 void conclusion ( int nRoots, float root1, float root2);
 void sort (float *root1, float *root2);
-int filing_main(int *operation_number);
+int filing_main(int *operation_number, float *coeff_a, float *coeff_b, float *coeff_c);
 
 
 
@@ -44,7 +44,7 @@ int main()
 
     Beep(440,1000);
 
-    start_verification();
+    //start_verification();
 
     printf("(%d) Hi, this program solves a quadratic equation. Enter \"!\" to stop the program or \"go\" to continue!\n", operation_number);
     scanf("%s", continuation_stop);
@@ -52,9 +52,10 @@ int main()
 
     {
 
-        filing_main(&operation_number);
-        int nRoots =  SolveSquare (coeff_a, coeff_b, coeff_c, &root1, &root2 ); //
+        filing_main(&operation_number, &coeff_a, &coeff_b, &coeff_c);
+        enum number_roots nRoots = SolveSquare (coeff_a, coeff_b, coeff_c, &root1, &root2 ); //
 
+        printf("nRoots value: %d\n", nRoots);
         conclusion ( nRoots,  root1,  root2);
         ++operation_number;
         printf("(%d) write \"!\" to stop and \"go\" to continue! \n",operation_number);
@@ -78,17 +79,18 @@ int main()
     scanf ("%f%f%f", coeff_a, coeff_b, coeff_c);
  }
 
- void conclusion ( int nRoots, float root1, float root2)
+ void conclusion ( enum number_roots nRoots, float root1, float root2)
  {
+    printf("nRoots value: %d\n", nRoots);
     switch (nRoots)
         {
-        case 0:  printf("* No roots\n");
+        case ZERO:  printf("* No roots\n");
                  break;
-        case 1:  printf("* Answer: %f\n", root1);
+        case ONE:  printf("* Answer: %f\n", root1);
                  break;
-        case 2:  printf("* Answer: x1 = %.2f\n          x2 = %.2f\n", root1, root2);
+        case TWO:  printf("* Answer: x1 = %.2f\n          x2 = %.2f\n", root1, root2);
                  break;
-        case SS_INF_ROOTS:  printf("* Any number\n");
+        case INFINITYY:  printf("* Any number\n");
                             break;
         default: printf("main(): ERROR: nRoots = %d\n", nRoots);
         }
@@ -167,7 +169,7 @@ int test_start(testing data)
     float root1 = 0;
     float root2 = 0;
 
-    int nRoots =  SolveSquare(data.coeff_a, data.coeff_b, data.coeff_c, &root1, &root2);
+    enum number_roots nRoots =  SolveSquare(data.coeff_a, data.coeff_b, data.coeff_c, &root1, &root2);
     sort (&root1, &root2);
     if(nRoots != data.nRootsExpected || !is_equal(root1,data.root1expected) || !is_equal(root2,data.root2expected))
     {
@@ -180,23 +182,19 @@ int test_start(testing data)
     return 0;
 }
 
- int filing_main(int *operation_number)
+ int filing_main(int *operation_number, float *coeff_a, float *coeff_b, float *coeff_c)
  {
-
-     float coeff_a = 0;
-     float coeff_b = 0;
-     float coeff_c = 0;
      char continuation_stop [3];
      ++(*operation_number);
         printf("(%d) Enter the coefficients of the quadratic equation \"coeff_a\", \"coeff_b\", \"coeff_c\" \
 in this sequence.\n", *operation_number);
 
-        input ( &coeff_a, &coeff_b,  &coeff_c);
+        input ( coeff_a, coeff_b,  coeff_c);
 
 
          ++(*operation_number);
         printf("(%d) Okay, your coefficients \n  coeff_a = %.2f\n  coeff_b = %.2f\n  coeff_c = %.2f.\nThat's right?\nWrite \"yes\" \
-if everything is correct, \"no\" if you want to change the coefficients.\n",*operation_number, coeff_a , coeff_b, coeff_c);
+if everything is correct, \"no\" if you want to change the coefficients.\n",*operation_number, *coeff_a , *coeff_b, *coeff_c);
         char changing_coefficients[4];
         scanf("%s", changing_coefficients);
 
@@ -213,7 +211,7 @@ if everything is correct, \"no\" if you want to change the coefficients.\n",*ope
             ++(*operation_number);
             printf("(%d) Enter the other coefficients of the quadratic equation \"coeff_a\",\"coeff_b\",\"coeff_c\"\
 in this sequence.\n",*operation_number);
-            input ( &coeff_a, &coeff_b,  &coeff_c);
+            input ( coeff_a, coeff_b,  coeff_c);
         }
 
         ++(*operation_number);
@@ -221,7 +219,7 @@ in this sequence.\n",*operation_number);
         ++(*operation_number);
         printf("(%d) Getting to the solution.\n",*operation_number);
 
-
+    return 0;
  }
 
 
